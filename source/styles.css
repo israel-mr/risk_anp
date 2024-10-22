@@ -1,0 +1,23 @@
+body {
+    font-family: 'Montserrat';font-size: 22px;
+}
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #333; 
+    background-color: #fff; 
+    border: 2px solid #007bff; 
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.button:hover {
+    background-color: #6CA6CD; 
+    color: #fff; 
+    border-color: #0056b3; 
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); 
+}

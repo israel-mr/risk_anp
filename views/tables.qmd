@@ -1,0 +1,110 @@
+---
+title: "Tablas Amenazas"
+format: html
+---
+
+```{r include=FALSE}
+dir_riskpj = "C:/Users/israel.monjaraz/OneDrive - Food and Agriculture Organization/Documentos/ProjectCodes/r/risk_analysis"   
+```
+
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source(paste0(dir_riskpj,"/libs.r"))   
+```
+
+
+
+**Análisis de amenazas reportadas en las ANP en el sistema I-Efectividad durante el ciclo 2021**
+
+
+<h2 style="color: #8B2323;">  Número total de amenazas en las ANP </h2>
+
+```{r echo=FALSE}
+con <- dbConnect(
+  RMySQL::MySQL(),
+  dbname = "monitoreo",
+  host = "localhost",  
+  username = "root",
+  password = ""
+)
+
+df_anp <- dbGetQuery(con, "SELECT * FROM anp")
+
+df_amenazas <- read.csv(paste0(dir_riskpj,"/data/anp_threats_ief.csv"))
+```
+
+
+```{r echo=FALSE}
+datatable(df_amenazas, 
+          options = list(
+              pageLength = 5,   
+              autoWidth = TRUE, 
+              dom = 'ftipr',    # Mostrar la tabla con paginación y barra de búsqueda
+              class = 'cell-border text-center'
+          )) %>%
+  formatStyle(
+      columns = colnames(df_amenazas), 
+      `text-align` = 'center'
+  )
+```
+
+
+
+<h2 style="color: #8B2323;">  Amenazas de origen natural en las ANP </h2>
+
+```{r echo=FALSE}
+df_amenazas_naturales <- read_excel(paste0(dir_riskpj,"/data/amenazas_naturales.xlsx"))
+df_amenazas_naturales = df_amenazas_naturales[,c(2,6:27)]
+
+# datatable(df_amenazas_naturales, 
+#           options = list(
+#               pageLength = 5,   
+#               autoWidth = TRUE, 
+#               dom = 'ftipr',    # Mostrar la tabla con paginación y barra de búsqueda
+#               class = 'cell-border text-center'
+#           )) %>%
+#   formatStyle(
+#       columns = colnames(df_amenazas_naturales), 
+#       `text-align` = 'center'
+#   )
+
+
+datatable(
+  df_amenazas_naturales,
+  options = list(
+    pageLength = 5,    
+    autoWidth = TRUE,
+    dom = 'ftipr',
+    class = 'cell-border text-center'
+  )
+)
+
+```
+
+
+
+
+<h2 style="color: #8B2323;">  Amenazas de origen inducido  en las ANP </h2>
+
+```{r echo=FALSE}
+
+
+# Cargar el dataframe
+df_amenazas_inducidas <- read_excel(paste0(dir_riskpj,"/data/amenazas_inducidas.xlsx"))
+df_amenazas_inducidas <- df_amenazas_inducidas[, c(2, 6:35)]  # Seleccionar las columnas
+
+  
+datatable(
+  df_amenazas_inducidas,
+  options = list(
+    pageLength = 5,    
+    autoWidth = TRUE,
+    dom = 'ftipr',
+    class = 'cell-border text-center'
+  )
+)
+
+
+```
+

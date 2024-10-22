@@ -1,0 +1,284 @@
+ ---
+title: "Análisis de amenazas en las ANP que implementan I-Efectividad"
+author: "DES: Subdirección de Monitoreo"
+output: 
+  html_document:
+    df_print: paged
+knitr:
+  opts_chunk:
+    echo: false
+    warning: false
+---
+
+<link href="styles.css" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
+
+<a href="views/tables.html" class="button" target="_blank">Tablas (Ciclo 2021)</a> 
+
+
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("libs.r")
+```
+
+ 
+
+
+```{r include=FALSE}
+#db anp in localhost
+library(RMySQL)  # O RMariaDB
+
+con <- dbConnect(
+  RMySQL::MySQL(),
+  dbname = "monitoreo",
+  host = "localhost",  
+  username = "root",
+  password = ""
+)
+
+df_anp <- dbGetQuery(con, "SELECT * FROM anp")
+
+```
+
+
+
+
+## Amenazas
+
+```{r echo=FALSE}
+df_amenazas <- read.csv("data/anp_threats_ief.csv")
+```
+
+
+
+```{r echo=FALSE}
+catmanejo_summ <- df_amenazas %>%
+  group_by(cat_manejo) %>%
+  summarise(mean_amenazas = round(mean(num_amenazas)),
+            sd_amenazas = round(sd(num_amenazas),3),
+            count = n())
+
+region_summ<- df_amenazas %>%
+  group_by(region) %>%
+  summarise(mean_amenazas = round(mean(num_amenazas)),
+            sd_amenazas = round(sd(num_amenazas),3),
+            count = n())
+ 
+```
+
+
+```{r echo=FALSE}
+region_summ <- df_amenazas %>%
+  group_by(region) %>%
+  summarise(count = n())
+
+ region_summ <- region_summ %>%
+  arrange(count)
+
+hchart(region_summ, "column", hcaes(x = reorder(region, count), y = count)) %>%
+  hc_title(text = "Número ANP con Amenazas por Región") %>%
+  hc_xAxis(title = list(text = "Región")) %>%
+  hc_yAxis(title = list(text = " ")) %>%
+  hc_tooltip(pointFormat = "<b>Num. de ANP con de Amenaza:</b> {point.y}", shared = TRUE)
+```
+
+ 
+
+
+```{r echo=FALSE}
+
+df_amenazas_scaled <- df_amenazas %>%
+  select(num_amenazas) %>%
+  scale()
+
+
+set.seed(123)
+kmeans_result <- kmeans(df_amenazas_scaled,
+                        centers = 3)
+df_amenazas$cluster <- kmeans_result$cluster
+
+ 
+
+```
+ 
+
+
+
+
+# Clustering (agrupaciones o conglomerados) entre las categorías de manejo y las regionales de las ANP
+ 
+ 
+- Baja: 0 a 4 amenazas reportadas
+- Baja: 5 a 6 amenazas reportadas
+- Baja: 7 a 10 amenazas reportadas
+ 
+ 
+```{r echo=FALSE}
+
+cluster_summary <- df_amenazas %>%
+  group_by(cluster) %>%
+  summarise(promedio_amenazas = mean(num_amenazas)) %>%
+  arrange(promedio_amenazas)
+
+
+cluster_summary$label <- c("Baja", "Media", "Alta")
+
+
+df_amenazas <- df_amenazas %>%
+  left_join(cluster_summary, by = "cluster") %>%
+  mutate(cluster_label = factor(label, levels = c("Baja", "Media", "Alta")))
+
+
+hchart(df_amenazas, "scatter", hcaes(x = abr_region, y = num_amenazas, group = cluster_label)) %>%
+  hc_title(text = "Agrupamiento de ANP según número de amenazas") %>%
+  hc_xAxis(title = list(text = "Región"), labels = list(rotation = 45)) %>%
+  hc_yAxis(title = list(text = "Número de Amenazas")) %>%
+  hc_tooltip(pointFormat = "ANP: {point.nombre_anp}
+                            <br>Presión: <b>{point.cluster_label}</b>
+                            <br>Amenazas: {point.num_amenazas}") %>%
+  hc_colors(c("#1f77b4", "#ff7f0e", "#2ca02c"))
+
+```
+
+
+# HeatMap: Número de amenazas por Dirección Regional
+ 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+library(highcharter)
+
+heatmap_data <- df_amenazas %>%
+  group_by(abr_region, cat_manejo) %>%
+  summarise(num_amenazas = n(), .groups = "drop")
+
+hchart(heatmap_data, type = "heatmap", 
+       hcaes(x = abr_region, y = cat_manejo, value = num_amenazas)) %>%
+  hc_title(text = "Cuadro de Calor del número Amenazas por Región y Categoría de Manejo") %>%
+  hc_xAxis(title = list(text = "Región"), labels = list(rotation = -45)) %>%
+  hc_yAxis(title = list(text = "Categoría de Manejo")) %>%
+  hc_colorAxis(minColor = "#FFFFFF", maxColor = "#FF0000") %>%
+  hc_legend(enabled = TRUE) %>%
+  hc_tooltip(pointFormat = "<b>Región:</b> {point.abr_region}
+                            <br><b>Categoría de Manejo:</b> {point.cat_manejo}
+                            <br><b>Número de Amenazas:</b> {point.value}")
+
+
+```
+#Anális estadístico de las amenazas Naturales en las ANP
+
+```{r echo=FALSE}
+
+
+df_amenazas_naturales <- read_excel("data/amenazas_naturales.xlsx")
+df_amenazas_inducidas <- read_excel("data/amenazas_inducidas.xlsx")
+ 
+
+```
+
+
+```{r echo=FALSE} 
+df_amenazas_naturales[is.na(df_amenazas_naturales)] <- 0
+
+ 
+amenazas_cols <- 8:ncol(df_amenazas_naturales)  
+df_amenazas_naturales[amenazas_cols] <- lapply(df_amenazas_naturales[amenazas_cols], as.numeric)
+```
+
+
+```{r echo=FALSE}
+# Frecuencia de cada amenaza
+frecuencia_amenazas <- colSums(df_amenazas_naturales[amenazas_cols])
+frecuencia_amenazas <- sort(frecuencia_amenazas, decreasing = TRUE)
+
+df_frecuencia_amenazas <- data.frame(
+  amenaza = names(frecuencia_amenazas),
+  frecuencia = frecuencia_amenazas
+)
+
+# Graficar con highcharter
+hchart(df_frecuencia_amenazas, "column", hcaes(x = amenaza, y = frecuencia)) %>%
+  hc_title(text = "Frecuencia de Amenazas de origen Natural en ANP") %>%
+  hc_xAxis(title = list(text = "Amenaza"), labels = list(rotation = 45)) %>%
+  hc_yAxis(title = list(text = "Frecuencia")) %>%
+  hc_colors("lightblue")
+```
+
+
+
+
+
+
+```{r echo=FALSE} 
+df_amenazas_inducidas[is.na(df_amenazas_inducidas)] <- 0
+
+ 
+amenazas_cols <- 8:ncol(df_amenazas_inducidas)  
+df_amenazas_inducidas[amenazas_cols] <- lapply(df_amenazas_inducidas[amenazas_cols], as.numeric)
+```
+
+
+```{r echo=FALSE}
+# Frecuencia de cada amenaza
+frecuencia_amenazas <- colSums(df_amenazas_inducidas[amenazas_cols])
+frecuencia_amenazas <- sort(frecuencia_amenazas, decreasing = TRUE)
+
+df_frecuencia_amenazas <- data.frame(
+  amenaza = names(frecuencia_amenazas),
+  frecuencia = frecuencia_amenazas
+)
+
+# Graficar con highcharter
+hchart(df_frecuencia_amenazas, "column", hcaes(x = amenaza, y = frecuencia)) %>%
+  hc_title(text = "Frecuencia de Amenazas inducidas en ANP") %>%
+  hc_xAxis(title = list(text = "Amenaza"), labels = list(rotation = 45)) %>%
+  hc_yAxis(title = list(text = "Frecuencia")) %>%
+  hc_colors("lightgreen")
+  
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Este análisis permite observar qué amenazas tienden a ocurrir juntas en las ANP.
+
+```{r eval=FALSE, include=FALSE}
+cor_matrix <- cor(df_amenazas_naturales[amenazas_cols])
+
+# Convertir la matriz de correlación en un formato largo para usar en highchart
+cor_data <- as.data.frame(as.table(cor_matrix))
+
+
+hchart(cor_data, "heatmap", hcaes(x = Var1, y = Var2, value = Freq)) %>%
+  hc_title(text = "Matriz de Correlación entre Amenazas Naturales en ANP") %>%
+  hc_xAxis(title = list(text = "Amenazas Naturales"), labels = list(rotation = 45)) %>%
+  hc_yAxis(title = list(text = "Amenazas Naturales")) %>%
+  hc_colorAxis(stops = color_stops(colors = c("#d73027", "#ffffbf", "#1a9850"))) %>%
+  hc_tooltip(pointFormat = "Correlación: {point.value:.2f}") %>%
+  hc_legend(align = "right", layout = "vertical", title = list(text = "Correlación")) %>%
+  hc_add_theme(hc_theme_flat())
+
+```
+ 
+ 
+  
+
+
+
