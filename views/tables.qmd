@@ -1,5 +1,5 @@
 ---
-title: "Tablas Amenazas"
+title: "Tabla de datos"
 format: html
 ---
 
@@ -15,7 +15,7 @@ source(paste0(dir_riskpj,"/libs.r"))
 
 
 
-**Análisis de amenazas reportadas en las ANP en el sistema I-Efectividad durante el ciclo 2021**
+**Datos usados en el análisis de las amenazas reportadas en las ANP en el sistema I-Efectividad durante el ciclo 2021**
 
 
 <h2 style="color: #8B2323;">  Número total de amenazas en las ANP </h2>
@@ -55,7 +55,7 @@ datatable(df_amenazas,
 
 ```{r echo=FALSE}
 df_amenazas_naturales <- read_excel(paste0(dir_riskpj,"/data/amenazas_naturales.xlsx"))
-df_amenazas_naturales = df_amenazas_naturales[,c(2,6:27)]
+df_amenazas_naturales = df_amenazas_naturales[,c(2,6:23)]
 
 # datatable(df_amenazas_naturales, 
 #           options = list(
@@ -92,7 +92,7 @@ datatable(
 
 # Cargar el dataframe
 df_amenazas_inducidas <- read_excel(paste0(dir_riskpj,"/data/amenazas_inducidas.xlsx"))
-df_amenazas_inducidas <- df_amenazas_inducidas[, c(2, 6:35)]  # Seleccionar las columnas
+df_amenazas_inducidas <- df_amenazas_inducidas[, c(2, 6:31)]  # Seleccionar las columnas
 
   
 datatable(

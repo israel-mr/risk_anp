@@ -1,5 +1,5 @@
  ---
-title: "Análisis de amenazas en las ANP que implementan I-Efectividad"
+title: "Análisis de amenazas en las ANP que implementan I-Efectividad (Ciclo 2021)"
 author: "DES: Subdirección de Monitoreo"
 output: 
   html_document:
@@ -14,16 +14,45 @@ knitr:
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 
 
-<a href="views/tables.html" class="button" target="_blank">Tablas (Ciclo 2021)</a> 
+<a href="views/tables.html" class="button" target="_blank">Datos (Ciclo 2021)</a> 
 
 
+
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 14px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+h3 {
+  color: #2c3e50;
+  text-align: center;
+}
+.interpretacion {
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-top: 20px;
+}
+.highlight {
+  font-weight: bold;
+  color: #e74c3c;
+}
+</style>
 
 ```{r include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 source("libs.r")
 ```
-
- 
 
 
 ```{r include=FALSE}
@@ -43,9 +72,7 @@ df_anp <- dbGetQuery(con, "SELECT * FROM anp")
 ```
 
 
-
-
-## Amenazas
+## Amenazas por Dirección Regional
 
 ```{r echo=FALSE}
 df_amenazas <- read.csv("data/anp_threats_ief.csv")
@@ -76,19 +103,42 @@ region_summ <- df_amenazas %>%
 
  region_summ <- region_summ %>%
   arrange(count)
+ region_summ$perc <- c(54.5,53.8,26.5, 45,73.7,63.6, 40.5, 43.6,51.4)
 
 hchart(region_summ, "column", hcaes(x = reorder(region, count), y = count)) %>%
   hc_title(text = "Número ANP con Amenazas por Región") %>%
   hc_xAxis(title = list(text = "Región")) %>%
   hc_yAxis(title = list(text = " ")) %>%
-  hc_tooltip(pointFormat = "<b>Num. de ANP con de Amenaza:</b> {point.y}", shared = TRUE)
+  hc_tooltip(pointFormat = "<b>Num. de ANP con de Amenaza:</b> {point.y}
+                            <br><b>Porcentaje de la regional con ANP amenazadas: </b>  {point.perc} %
+             ", 
+             shared = TRUE)%>%
+  hc_exporting(enabled=TRUE)
 ```
 
+
+
+
+<div class="container">
+<h3>Interpretación</h3>
+<div class="interpretacion">
+La gráfica presenta un primer resumen general de las <span class="highlight">115 ANP</span> que implementaron I-Efectividad en el ciclo 2021, en el cual se presenta el número de ANP que reportaron al menos un tipo de amenaza en el componente de manejo dentro del sistema. De ellas, la <span class="highlight">DR Frontera Sur, Istmo y Pacífico Sur</span> de sus 37 ANP, <span class="highlight">19 de ellas</span> presentan al menos alguna amenaza, es decir, el <span class="highlight">51.4%</span> de las ANP en la regional presentan algún tipo de amenaza.
+</div>
+</div>
+
+
+
+
+# Clustering (agrupaciones o conglomerados) entre las categorías de manejo y las regionales de las ANP
+ 
+ 
+- Baja: 0 a 4 amenazas reportadas
+- Media: 5 a 6 amenazas reportadas
+- Alta: 7 a 10 amenazas reportadas
  
 
 
 ```{r echo=FALSE}
-
 df_amenazas_scaled <- df_amenazas %>%
   select(num_amenazas) %>%
   scale()
@@ -103,16 +153,6 @@ df_amenazas$cluster <- kmeans_result$cluster
 
 ```
  
-
-
-
-
-# Clustering (agrupaciones o conglomerados) entre las categorías de manejo y las regionales de las ANP
- 
- 
-- Baja: 0 a 4 amenazas reportadas
-- Baja: 5 a 6 amenazas reportadas
-- Baja: 7 a 10 amenazas reportadas
  
  
 ```{r echo=FALSE}
@@ -279,6 +319,3 @@ hchart(cor_data, "heatmap", hcaes(x = Var1, y = Var2, value = Freq)) %>%
  
  
   
-
-
-
