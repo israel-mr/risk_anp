@@ -1,11 +1,8 @@
-# Nombre del Proyecto
+# Análisis de amenazas en Áreas Naturales Protegidas
+## ANP que implementaron I-Efectividad en 2021
 
 Contiene información del análisis exploratorio de datos de los diferentes factores de presión/riesgo/amenazas que se enfrentan las Áreas Naturales Protegidas en México.
 
-
-# Website
-
-See website in: https://israel-mr.github.io/risk_anp/
  
 ## Instalación
 
@@ -25,6 +22,6 @@ cd risk_anp
 See website in: https://israel-mr.github.io/risk_anp/
  
 
-***Developed under MIT distribution license***
+*Developed under MIT distribution license*
 
 
