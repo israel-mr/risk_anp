@@ -10,7 +10,7 @@ knitr:
     warning: false
 ---
 
-<link href="styles.css" rel="stylesheet">
+<link href="/source/styles.css" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 
 
@@ -107,16 +107,14 @@ region_summ <- df_amenazas %>%
 
 hchart(region_summ, "column", hcaes(x = reorder(region, count), y = count)) %>%
   hc_title(text = "Número ANP con Amenazas por Región") %>%
-  hc_xAxis(title = list(text = "Región")) %>%
-  hc_yAxis(title = list(text = " ")) %>%
+  hc_xAxis(title = list(text = " ")) %>%
+  hc_yAxis(title = list(text = "Número de Áreas Naturales Protegidas")) %>%
   hc_tooltip(pointFormat = "<b>Num. de ANP con de Amenaza:</b> {point.y}
                             <br><b>Porcentaje de la regional con ANP amenazadas: </b>  {point.perc} %
              ", 
              shared = TRUE)%>%
   hc_exporting(enabled=TRUE)
 ```
-
-
 
 
 <div class="container">
@@ -129,7 +127,7 @@ La gráfica presenta un primer resumen general de las <span class="highlight">11
 
 
 
-# Anális estadístico de las amenazas Naturales en las ANP
+# Análisis exploratorio de las amenazas  en las ANP
 
 ```{r echo=FALSE}
 
@@ -151,7 +149,7 @@ df_amenazas_naturales[amenazas_cols] <- lapply(df_amenazas_naturales[amenazas_co
 
 
 ```{r echo=FALSE}
-# Frecuencia de cada amenaza
+
 frecuencia_amenazas <- colSums(df_amenazas_naturales[amenazas_cols])
 frecuencia_amenazas <- sort(frecuencia_amenazas, decreasing = TRUE)
 
@@ -160,12 +158,14 @@ df_frecuencia_amenazas <- data.frame(
   frecuencia = frecuencia_amenazas
 )
 
-# Graficar con highcharter
 hchart(df_frecuencia_amenazas, "column", hcaes(x = amenaza, y = frecuencia)) %>%
-  hc_title(text = "Frecuencia de Amenazas de origen (parte 1) en ANP") %>%
-  hc_xAxis(title = list(text = "Amenaza"), labels = list(rotation = 45)) %>%
-  hc_yAxis(title = list(text = "Frecuencia")) %>%
-  hc_colors("lightblue")
+  hc_title(text = "Frecuencia de Amenazas (parte 1) en ANP") %>%
+  hc_xAxis(title = list(text = ""), labels = list(rotation = 45)) %>%
+  hc_yAxis(title = list(text = "Número de ANP con la amenaza")) %>%
+  hc_colors("lightblue")%>%
+  hc_tooltip(pointFormat = "<b>Num. de ANP con esta Amenaza:</b> {point.y}", 
+             shared = TRUE)%>%
+  hc_exporting(enabled = TRUE)
 ```
 
 
@@ -179,10 +179,7 @@ df_amenazas_inducidas[is.na(df_amenazas_inducidas)] <- 0
  
 amenazas_cols <- 8:ncol(df_amenazas_inducidas)  
 df_amenazas_inducidas[amenazas_cols] <- lapply(df_amenazas_inducidas[amenazas_cols], as.numeric)
-```
-
-
-```{r echo=FALSE}
+ 
 # Frecuencia de cada amenaza
 frecuencia_amenazas <- colSums(df_amenazas_inducidas[amenazas_cols])
 frecuencia_amenazas <- sort(frecuencia_amenazas, decreasing = TRUE)
@@ -197,7 +194,10 @@ hchart(df_frecuencia_amenazas, "column", hcaes(x = amenaza, y = frecuencia)) %>%
   hc_title(text = "Frecuencia de Amenazas (parte 2) en ANP") %>%
   hc_xAxis(title = list(text = "Amenaza"), labels = list(rotation = 45)) %>%
   hc_yAxis(title = list(text = "Frecuencia")) %>%
-  hc_colors("lightgreen")
+  hc_colors("lightgreen")%>%
+  hc_tooltip(pointFormat = "<b>Num. de ANP con esta Amenaza:</b> {point.y}", 
+             shared = TRUE)%>%
+  hc_exporting(enabled = TRUE)
   
 ```
 
