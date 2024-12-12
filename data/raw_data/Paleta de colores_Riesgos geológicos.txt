@@ -1,0 +1,8 @@
+Riesgos geológicos 
+
+0   #7c896f
+1   #deb9a9
+2   #d49d7f
+3   #99a08c
+4   #cc8245
+5   #a45024

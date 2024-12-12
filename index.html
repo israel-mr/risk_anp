@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>RFP-ANP</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/quarto.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="index_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+<script src="index_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="index_files/libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+
+<script src="index_files/libs/proj4js-2.3.15/proj4.js"></script>
+
+<link href="index_files/libs/highcharts-9.3.1/css/motion.css" rel="stylesheet">
+
+<script src="index_files/libs/highcharts-9.3.1/highcharts.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/highcharts-3d.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/highcharts-more.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/stock.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/map.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/data.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/exporting.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/offline-exporting.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/drilldown.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/item-series.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/overlapping-datalabels.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/annotations.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/export-data.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/funnel.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/heatmap.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/treemap.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/sankey.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/dependency-wheel.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/organization.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/solid-gauge.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/streamgraph.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/sunburst.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/vector.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/wordcloud.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/xrange.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/tilemap.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/venn.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/gantt.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/timeline.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/parallel-coordinates.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/bullet.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/coloraxis.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/dumbbell.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/lollipop.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/series-label.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/plugins/motion.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/custom/reset.js"></script>
+
+<script src="index_files/libs/highcharts-9.3.1/modules/boost.js"></script>
+
+<script src="index_files/libs/highchart-binding-0.9.4/highchart.js"></script>
+
+<link href="index_files/libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+
+<script src="index_files/libs/datatables-binding-0.33/datatables.js"></script>
+
+<link href="index_files/libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+
+<link href="index_files/libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+
+<script src="index_files/libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+
+<script src="index_files/libs/jszip-1.13.6/jszip.min.js"></script>
+
+<script src="index_files/libs/pdfmake-1.13.6/pdfmake.js"></script>
+
+<script src="index_files/libs/pdfmake-1.13.6/vfs_fonts.js"></script>
+
+<link href="index_files/libs/dt-ext-buttons-1.13.6/css/buttons.dataTables.min.css" rel="stylesheet">
+
+<script src="index_files/libs/dt-ext-buttons-1.13.6/js/dataTables.buttons.min.js"></script>
+
+<script src="index_files/libs/dt-ext-buttons-1.13.6/js/buttons.html5.min.js"></script>
+
+<script src="index_files/libs/dt-ext-buttons-1.13.6/js/buttons.colVis.min.js"></script>
+
+<script src="index_files/libs/dt-ext-buttons-1.13.6/js/buttons.print.min.js"></script>
+
+<link href="index_files/libs/dt-ext-responsive-1.13.6/css/responsive.dataTables.min.css" rel="stylesheet">
+
+<script src="index_files/libs/dt-ext-responsive-1.13.6/js/dataTables.responsive.min.js"></script>
+
+<link href="index_files/libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet">
+
+<script src="index_files/libs/nouislider-7.0.10/jquery.nouislider.min.js"></script>
+
+<link href="index_files/libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet">
+
+<script src="index_files/libs/selectize-0.12.0/selectize.min.js"></script>
+
+<link href="index_files/libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="index_files/libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">RFP-ANP</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>este ya no lo usé, jajaj sí lo uso, no andaba concentrado ese día X)</p>
+<section id="análisis-exploratorio-de-los-datos-estadística-descriptiva" class="level1">
+<h1>Análisis exploratorio de los datos (Estadística descriptiva)</h1>
+</section>
+<section id="data-wrangling-tablas-de-riesgos" class="level1">
+<h1>Data wrangling (Tablas de Riesgos)</h1>
+</section>
+<section id="análisis-de-riesgos-geológicos" class="level1">
+<h1>Análisis de Riesgos Geológicos</h1>
+<ul>
+<li>Sismos</li>
+<li>Remoción_de_masa</li>
+<li>Erosión</li>
+<li>Subsidencia</li>
+<li>Vulcanismo</li>
+</ul>
+<p>Gráfico 3. Número de ANP y ocurrencia durante todo el año</p>
+<p>El Gráfico 3 ilustra los riesgos geológicos reportados por las ANP a lo largo del año, de las 110 ANP que identificaron la erosión como un riesgo, más del 60 % (68 ANP) consideran que este problema es persistente durante todo el año. En el caso de los sismos, de las 37 ANP que los reportan, 30 indican que este riesgo también prevalece continuamente, de manera similar, los Subsidencia son considerados un riesgo constante en 9 ANP, por otro lado, el vulcanismo en 6 ANP y los Remoción_de_masa en solo 2 ANP, a pesar de que 45 ANP los identifican estos últimos como un riesgo.</p>
+</section>
+<section id="riesgos-hidrometeorológicos" class="level1">
+<h1>Riesgos hidrometeorológicos</h1>
+</section>
+<section id="función-gráficas" class="level1">
+<h1>función gráficas</h1>
+<section id="fn-una-sola-gráfica" class="level2">
+<h2 class="anchored" data-anchor-id="fn-una-sola-gráfica">fn una sola gráfica</h2>
+</section>
+</section>
+<section id="riesgos-geológicos" class="level1">
+<h1>Riesgos geológicos</h1>
+<div class="cell">
+<div class="cell-output-display">
+<div class="highchart html-widget html-fill-item" id="htmlwidget-7245da0803f526feeb43" style="width:100%;height:650px;"></div>
+<script type="application/json" data-for="htmlwidget-7245da0803f526feeb43">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":"Número de ANP en las que ocurre un tipo de riesgo geológico","style":{"fontSize":"22px","fontWeight":"bold","color":"black"}},"yAxis":{"title":{"text":"total"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":false},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}},"pie":{"dataLabels":{"enabled":true,"format":"{point.name}: {point.y} ANP","style":{"fontSize":"17px","fontWeight":"bold","color":"black"}},"colors":["#e7d3c6","#e1c1b8","#d8b89a","#d2a679","#8b5a3e"],"innerSize":"50%"}},"series":[{"group":"group","data":[{"variable":"Vulcanismo","total":9,"colorv":"#c6825b","y":9,"name":"Vulcanismo"},{"variable":"Subsidencia","total":22,"colorv":"#c6825b","y":22,"name":"Subsidencia"},{"variable":"Sismos","total":50,"colorv":"#c6825b","y":50,"name":"Sismos"},{"variable":"Remoción de masa","total":58,"colorv":"#c6825b","y":58,"name":"Remoción de masa"},{"variable":"Erosión","total":130,"colorv":"#c6825b","y":130,"name":"Erosión"}],"type":"pie"}],"xAxis":{"type":"category","title":{"text":"variable"},"categories":null},"tooltip":{"pointFormat":"Riesgo: {point.name}<br>ANP Reportando: {point.y}"}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<div class="highchart html-widget html-fill-item" id="htmlwidget-96029403f8b79823d996" style="width:100%;height:650px;"></div>
+<script type="application/json" data-for="htmlwidget-96029403f8b79823d996">{"x":{"hc_opts":{"chart":{"reflow":true,"type":"column"},"title":{"text":"Número de riesgos en las ANP"},"yAxis":[{"title":{"text":"Número de ANP","style":{"color":"black","fontSize":"18px"}},"labels":{"style":{"fontWeight":"bold","color":"black","fontSize":"18px"}}}],"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"},"column":{"pointPadding":0.05,"borderWidth":0}},"series":[{"data":[50,60,56,25,3,2],"name":"ANP","color":"#c6825b","dataLabels":{"enabled":true,"style":{"color":"black","fontSize":"22px"}}}],"tooltip":{"pointFormat":"<b>{point.y} ANP<\/b> con <b>{point.category} riesgos<\/b>"},"xAxis":[{"title":{"text":"Riesgos Geológicos","style":{"color":"black","fontSize":"18px"}},"labels":{"style":{"fontWeight":"bold","color":"black","fontSize":"18px"}}}]},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="riesgos-hidro-meteorológicos" class="level1">
+<h1>Riesgos hidro-meteorológicos</h1>
+<div class="cell">
+<div class="cell-output-display">
+<div class="highchart html-widget html-fill-item" id="htmlwidget-a76a86cad14462c55e07" style="width:100%;height:650px;"></div>
+<script type="application/json" data-for="htmlwidget-a76a86cad14462c55e07">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":"Número de ANP en las que ocurre un tipo de Riesgo Hidro-meteorológico","style":{"fontSize":"22px","fontWeight":"bold","color":"black"}},"yAxis":{"title":{"text":"total"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":false},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}},"pie":{"dataLabels":{"enabled":true,"format":"{point.name}: {point.y} ANP","style":{"fontSize":"17px","fontWeight":"bold","color":"black"}},"colors":["#f0f8ff","#d0e5f7","#a1c3f1","#6493e1","#3c66d1","#1a48b6","#13368a","#0d2661","#09173e"],"innerSize":"50%"}},"series":[{"group":"group","data":[{"variable":"Nevadas","total":30,"colorv":"#6493e1","y":30,"name":"Nevadas"},{"variable":"Inundaciones","total":81,"colorv":"#6493e1","y":81,"name":"Inundaciones"},{"variable":"Ciclones tropicales","total":110,"colorv":"#6493e1","y":110,"name":"Ciclones tropicales"},{"variable":"Huracanes","total":116,"colorv":"#6493e1","y":116,"name":"Huracanes"},{"variable":"Tormentas tropicales","total":125,"colorv":"#6493e1","y":125,"name":"Tormentas tropicales"},{"variable":"Altas temperaturas","total":151,"colorv":"#6493e1","y":151,"name":"Altas temperaturas"},{"variable":"Sequías","total":158,"colorv":"#6493e1","y":158,"name":"Sequías"}],"type":"pie"}],"xAxis":{"type":"category","title":{"text":"variable"},"categories":null},"tooltip":{"pointFormat":"Riesgo: {point.name}<br>ANP Reportando: {point.y}"}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<div class="highchart html-widget html-fill-item" id="htmlwidget-9472acbd5424239cb741" style="width:100%;height:650px;"></div>
+<script type="application/json" data-for="htmlwidget-9472acbd5424239cb741">{"x":{"hc_opts":{"chart":{"reflow":true,"type":"column"},"title":{"text":"Número de riesgos en las ANP"},"yAxis":[{"title":{"text":"Número de ANP","style":{"color":"black","fontSize":"18px"}},"labels":{"style":{"fontWeight":"bold","color":"black","fontSize":"18px"}}}],"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"},"column":{"pointPadding":0.05,"borderWidth":0}},"series":[{"data":[4,18,24,36,26,40,43,5],"name":"ANP","color":"#6493e1","dataLabels":{"enabled":true,"style":{"color":"black","fontSize":"22px"}}}],"tooltip":{"pointFormat":"<b>{point.y} ANP<\/b> con <b>{point.category} riesgos<\/b>"},"xAxis":[{"title":{"text":"Riesgos Hidro-meteorológicos","style":{"color":"black","fontSize":"18px"}},"labels":{"style":{"fontWeight":"bold","color":"black","fontSize":"18px"}}}]},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="ecosistémicos" class="level1">
+<h1>Ecosistémicos</h1>
+<div class="cell">
+<div class="cell-output-display">
+<div class="highchart html-widget html-fill-item" id="htmlwidget-e611e3d17b4cbe96e58a" style="width:100%;height:650px;"></div>
+<script type="application/json" data-for="htmlwidget-e611e3d17b4cbe96e58a">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":"Número de ANP en las que ocurre un tipo de Riesgo Ecosistémico","style":{"fontSize":"22px","fontWeight":"bold","color":"black"}},"yAxis":{"title":{"text":"total"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":false},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}},"pie":{"dataLabels":{"enabled":true,"format":"{point.name}: {point.y} ANP","style":{"fontSize":"17px","fontWeight":"bold","color":"black"}},"colors":["#aed16f","#63783d","#37591d","#0d1f07"],"innerSize":"50%"}},"series":[{"group":"group","data":[{"variable":"Blanqueamiento de corales","total":25,"colorv":"#63783d","y":25,"name":"Blanqueamiento de corales"},{"variable":"Zoonosis,enfermedades emergente","total":50,"colorv":"#63783d","y":50,"name":"Zoonosis,enfermedades emergente"},{"variable":"Plagas forestales","total":98,"colorv":"#63783d","y":98,"name":"Plagas forestales"},{"variable":"Especies Exóticas invasoras","total":151,"colorv":"#63783d","y":151,"name":"Especies Exóticas invasoras"}],"type":"pie"}],"xAxis":{"type":"category","title":{"text":"variable"},"categories":null},"tooltip":{"pointFormat":"Riesgo: {point.name}<br>ANP Reportando: {point.y}"}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<div class="highchart html-widget html-fill-item" id="htmlwidget-963c500c62e54cfc6d68" style="width:100%;height:650px;"></div>
+<script type="application/json" data-for="htmlwidget-963c500c62e54cfc6d68">{"x":{"hc_opts":{"chart":{"reflow":true,"type":"column"},"title":{"text":"Número de riesgos en las ANP"},"yAxis":[{"title":{"text":"Número de ANP","style":{"color":"black","fontSize":"18px"}},"labels":{"style":{"fontWeight":"bold","color":"black","fontSize":"18px"}}}],"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"},"column":{"pointPadding":0.05,"borderWidth":0}},"series":[{"data":[23,62,75,32,4],"name":"ANP","color":"#63783d","dataLabels":{"enabled":true,"style":{"color":"black","fontSize":"22px"}}}],"tooltip":{"pointFormat":"<b>{point.y} ANP<\/b> con <b>{point.category} riesgos<\/b>"},"xAxis":[{"title":{"text":"Riesgos Ecosistémicos","style":{"color":"black","fontSize":"18px"}},"labels":{"style":{"fontWeight":"bold","color":"black","fontSize":"18px"}}}]},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="incendios-forestales" class="level1">
+<h1>Incendios forestales</h1>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  total_rg     n report        
+     &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;         
+1        0    54 "Sin reporte "
+2        1   142 "Con reporte" </code></pre>
+</div>
+<div class="cell-output-display">
+<div class="highchart html-widget html-fill-item" id="htmlwidget-f9cd27813666a0be9477" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-f9cd27813666a0be9477">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":"Número de ANP en las que ocurren Incendios forestales","style":{"fontSize":"22px","fontWeight":"bold","color":"black"}},"yAxis":{"title":{"text":"n"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":false},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}},"pie":{"dataLabels":{"enabled":true,"format":"{point.report}: {point.y} ANP","style":{"fontSize":"16px","fontWeight":"bold","color":"black"}},"colors":["#f79326","#f1473a"],"innerSize":"50%"}},"series":[{"group":"group","data":[{"total_rg":0,"n":54,"report":"Sin reporte ","x":0,"y":54},{"total_rg":1,"n":142,"report":"Con reporte","x":1,"y":142}],"type":"pie"}],"xAxis":{"type":"linear","title":{"text":"total_rg"},"categories":null},"tooltip":{"pointFormat":"Riesgo: {point.name}<br>ANP Reportadas: {point.y}"}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="factores-de-presión-antrópicos" class="level1">
+<h1>Factores de presión antrópicos</h1>
+<div class="cell">
+<div class="cell-output-display">
+<div class="highchart html-widget html-fill-item" id="htmlwidget-a1e49f554222f37f63fd" style="width:100%;height:650px;"></div>
+<script type="application/json" data-for="htmlwidget-a1e49f554222f37f63fd">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":"Número de ANP en las que ocurre un tipo de Factor de presión antrópico","style":{"fontSize":"22px","fontWeight":"bold","color":"black"}},"yAxis":{"title":{"text":"total"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":false},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}},"pie":{"dataLabels":{"enabled":true,"format":"{point.name}: {point.y} ANP","style":{"fontSize":"17px","fontWeight":"bold","color":"black"}},"colors":["#EECBAD","#FFA07A","#EE9572","#CD8162","#8B5742"],"innerSize":"50%"}},"series":[{"group":"group","data":[{"variable":"Derrame hidrocarburos","total":34,"colorv":"#EE9572","y":34,"name":"Derrame hidrocarburos"},{"variable":"Vertederos al aire libre","total":60,"colorv":"#EE9572","y":60,"name":"Vertederos al aire libre"},{"variable":"Uso plaguicidas_agroquímicos","total":97,"colorv":"#EE9572","y":97,"name":"Uso plaguicidas_agroquímicos"},{"variable":"Contaminación cuerpos de agua","total":109,"colorv":"#EE9572","y":109,"name":"Contaminación cuerpos de agua"},{"variable":"Contaminación_sólidos-líquidos","total":140,"colorv":"#EE9572","y":140,"name":"Contaminación_sólidos-líquidos"}],"type":"pie"}],"xAxis":{"type":"category","title":{"text":"variable"},"categories":null},"tooltip":{"pointFormat":"Riesgo: {point.name}<br>ANP Reportando: {point.y}"}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<div class="highchart html-widget html-fill-item" id="htmlwidget-c4ffc8d2a47ac7d74639" style="width:100%;height:650px;"></div>
+<script type="application/json" data-for="htmlwidget-c4ffc8d2a47ac7d74639">{"x":{"hc_opts":{"chart":{"reflow":true,"type":"column"},"title":{"text":"Número de riesgos en las ANP"},"yAxis":[{"title":{"text":"Número de ANP","style":{"color":"black","fontSize":"18px"}},"labels":{"style":{"fontWeight":"bold","color":"black","fontSize":"18px"}}}],"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"},"column":{"pointPadding":0.05,"borderWidth":0}},"series":[{"data":[31,37,33,53,32,10],"name":"ANP","color":"#EE9572","dataLabels":{"enabled":true,"style":{"color":"black","fontSize":"22px"}}}],"tooltip":{"pointFormat":"<b>{point.y} ANP<\/b> con <b>{point.category} riesgos<\/b>"},"xAxis":[{"title":{"text":"Factores de presión antrópicos","style":{"color":"black","fontSize":"18px"}},"labels":{"style":{"fontWeight":"bold","color":"black","fontSize":"18px"}}}]},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 196 × 9
+   id_anp   nombre_anp                  cat_manejo region Contaminación_sólido…¹
+   &lt;chr&gt;    &lt;chr&gt;                       &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;                 
+ 1 00101100 El Vizcaíno                 RB         Penín… "Todo el año"         
+ 2 00103045 Sierra de San Pedro Mártir  PN         Penín… ""                    
+ 3 00103052 Constitución de 1857        PN         Penín… "Abr"                 
+ 4 00103183 Revillagigedo               PN         Penín… ""                    
+ 5 00103190 Loreto II                   PN         Penín… "Todo el año"         
+ 6 00103192 San Quintín                 PN         Penín… "Todo el año"         
+ 7 00107055 Cabo San Lucas              APFF       Penín… "Todo el año"         
+ 8 00107063 Valle de los Cirios         APFF       Penín… "Todo el año"         
+ 9 00107177 Balandra                    APFF       Penín… "Todo el año"         
+10 00201110 Alto Golfo de California y… RB         Noroe… "Todo el año"         
+# ℹ 186 more rows
+# ℹ abbreviated name: ¹​`Contaminación_sólidos-líquidos`
+# ℹ 4 more variables: `Contaminación cuerpos de agua` &lt;chr&gt;,
+#   `Derrame hidrocarburos` &lt;chr&gt;, `Uso plaguicidas_agroquímicos` &lt;chr&gt;,
+#   `Vertederos al aire libre` &lt;chr&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-62b5d01cac40e68d9d34" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-62b5d01cac40e68d9d34">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"5\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons","Responsive"],"data":[["00101100","00103045","00103052","00103183","00103190","00103192","00107055","00107063","00107177","00201110","00201111","00201153","00207038","00207125","00207145","00207200","00208085","00208089","00208204","00301059","00303037","00303067","00303146","00307018","00307024","00307035","00307172","00307178","00308219","00401060","00401113","00403008","00403010","00403029","00403039","00403144","00404103","00404173","00406047","00406048","00407068","00407072","00407118","00407119","00407120","00407168","00407184","00407221","00501096","00501147","00501164","00501175","00501218","00503005","00503006","00503033","00503034","00503042","00503050","00503065","00503159","00503214","00506046","00507040","00507061","00507076","00507217","00508079","00508081","00508082","00508083","00508090","00508091","00508092","00508093","00508152","00508213","00601130","00601135","00601143","00601149","00601161","00601220","00603002","00603007","00603009","00603011","00603013","00603015","00603016","00603021","00603026","00603031","00603036","00603053","00603064","00603070","00603075","00603193","00606043","00606185","00606187","00606223","00607003","00607099","00607154","00607188","00701203","00703014","00703017","00703025","00703109","00703210","00706032","00706224","00706228","00707116","00707156","00707166","00707169","00708080","00708205","00708209","00801056","00801077","00801102","00801108","00801122","00801123","00801155","00803020","00803023","00803051","00803066","00803071","00803134","00803197","00803199","00803226","00804105","00804107","00804140","00806058","00806232","00807062","00807106","00807136","00807137","00807167","00807196","00807230","00808084","00808086","00808094","00808095","00808206","00808208","00808215","00901078","00901101","00901126","00901132","00901139","00901141","00901148","00901170","00901201","00903069","00903097","00903117","00903127","00903128","00903133","00903150","00903207","00903212","00907115","00907121","00907151","00907160","00907165","00907176","00907186","00907189","00907194","00907195","00907198","00907202","00907222","00907227","00907229","00908087","00908211","02107057","05306049","09703231"],["El Vizcaíno","Sierra de San Pedro Mártir","Constitución de 1857","Revillagigedo","Loreto II","San Quintín","Cabo San Lucas","Valle de los Cirios","Balandra","Alto Golfo de California y Delta del Río Colorado","El Pinacate y Gran Desierto de Altar","Isla San Pedro Mártir","Bavispe","Sierra de Álamos-Río Cuchujaqui","Meseta de Cacaxtla","Juan M. Banderas","Playa Ceuta","Playa Huizache Caimanero","Playa El Verde Camacho","La Michilía","Cumbres de Majalca","Cascada de Bassaseachic","Sierra de Órganos","Tutuaca","Campo Verde","Papigochic","Médanos de Samalayuca","Cerro Mohinora","Cotorra Serrana Occidental","Mapimí","Sierra del Abra Tanchipa","El Potosí","Gogorrón","El Sabinal","Los Novillos","Cumbres de Monterrey","Cerro de la Silla","Río Bravo del Norte","C.A.D.N.R. 004 Don Martín","C.A.D.N.R. 026 Bajo Río San Juan","Sierra de Álvarez","Sierra La Mojonera","Cañón de Santa Elena","Maderas del Carmen","Cuatrociénegas","Ocampo","Sierra de San Miguelito","Semidesierto Zacatecano","Sierra de Manantlán","Islas Marías","Zicuirán-Infiernillo","Marismas Nacionales Nayarit","Sierra de Vallejo-Río Ameca","Cerro de Garnica","Volcán Nevado de Colima","Barranca del Cupatitzio","Insurgente José María Morelos","Lago de Camécuaro","Rayón","Isla Isabel","Islas Marietas","Zona Marina de la Isla Isabel","C.A.D.N.R. 001 Pabellón","Pico de Tancítaro","La Primavera","Sierra de Quila","Canoas","Playa Teopa","Playa Piedra de Tlacoyunque","Playa Mexiquillo","Playa Cuitzmala","Playa El Tecuán","Playa Mismaloya","Playa Maruata","Playa Colola","Islas La Pajarera, Cocinas, Mamut, Colorada, San Pedro, San Agustín, San Andrés y Negrita y los Islotes Los Anegados, Novillas, Mosca y Submarino","Playa Platanitos","Sierra Gorda","Tehuacán-Cuicatlán","Mariposa Monarca","Barranca de Metztitlán","Sierra Gorda de Guanajuato","Sierra Tecuani","Iztaccíhuatl-Popocatépetl","Los Mármoles","Insurgente Miguel Hidalgo y Costilla","Cumbres del Ajusco","Lagunas de Zempoala","El Tepozteco","El Tepeyac","Molino de Flores Netzahualcóyotl","Los Remedios","La Montaña Malinche o Matlalcuéyatl","Sacromonte","General Juan Álvarez","El Veladero","Tula","El Cimatario","Vicente Guerrero","Z.P.F.T.C.C. de los ríos Valle de Bravo, Malacatepec, Tilostoc y Temascaltepec","Lago de Texcoco","Peña Colorada","Lago Tláhuac-Xico","Nevado de Toluca","Corredor Biológico Chichinautzin","Ciénegas del Lerma","Hermenegildo Galeana","Wanha'","Pico de Orizaba","Cofre de Perote o Nauhcampatépetl","Cañón del Río Blanco","Sistema Arrecifal Veracruzano","Carmen Serdán","Z.P.F.V. la Cuenca Hidrográfica del Río Necaxa","Tlachinoltepetl","Kowtahyolo","Laguna de Términos","Laguna Madre y Delta del Río Bravo","Cañón del Usumacinta","Sistema Arrecifal Lobos-Tuxpan","Playa Rancho Nuevo","Playa Lechuguillas","Playas del Totonacapan","Montes Azules","Selva El Ocote","El Triunfo","Lacan-Tun","La Encrucijada","La Sepultura","Volcán Tacaná","Lagunas de Chacahua","Benito Juárez","Lagunas de Montebello","Cañón del Sumidero","Palenque","Huatulco","Huatulco II","Ricardo Flores Magón","Tangolunda","Bonampak","Yaxchilán","Yagul","Z.P.F. en los terrenos que se encuentran en los mpios. de La Concordia, Ángel Albino Corzo, Villa Flores y Jiquipilas","Z.P.F.V. los terrenos forestales de Villa Allende","Cascada de Agua Azul","Chan-Kin","Nahá","Metzabok","Boquerón de Tonalá","Bajos de Coyula","Bajos de Coyula II","Playa Chacahua","Playa Tierra Colorada","Playa Puerto Arista","Playa Escobilla","Barra de la Cruz-Playa Grande","Playa Morro Ayuta","Playa Cahuitán","Sian Ka'an","Calakmul","Banco Chinchorro","Arrecifes de Sian Ka'an","Ría Lagartos","Los Petenes","Ría Celestún","Tiburón Ballena","Balam Kú","Tulum","Dzibilchantún","Arrecife Alacranes","Costa Occidental de Isla Mujeres, Punta Cancún y Punta Nizuc","Arrecifes de Cozumel","Arrecife de Puerto Morelos","Arrecifes de Xcalak","Nuevo Uxmal","Bajos del Norte","Yum Balam","Uaymil","Otoch Ma'ax Yetel Kooh","Bala'an K'aax","Manglares de Nichupté","La porción norte y la franja costera oriental, terrestres y marinas de la Isla de Cozumel","Jaguar","Jacinto Pat","Cenote Aerolito","Playa Delfines","San Buenaventura","Balam Kin","Manglares de Puerto Morelos","Felipe Carrillo Puerto","Chunyaxché","Playa Ría Lagartos","Playa Chenkan","Islas del Golfo de California","C.A.D.N.R. 043 Estado de Nayarit","Arrecifes del Golfo de México-Sur"],["RB","PN","PN","PN","PN","PN","APFF","APFF","APFF","RB","RB","RB","APFF","APFF","APFF","APFF","SANT","SANT","SANT","RB","PN","PN","PN","APFF","APFF","APFF","APFF","APFF","SANT","RB","RB","PN","PN","PN","PN","PN","MN","MN","APRN","APRN","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","RB","RB","RB","RB","RB","PN","PN","PN","PN","PN","PN","PN","PN","PN","APRN","APFF","APFF","APFF","APFF","SANT","SANT","SANT","SANT","SANT","SANT","SANT","SANT","SANT","SANT","RB","RB","RB","RB","RB","RB","PN","PN","PN","PN","PN","PN","PN","PN","PN","PN","PN","PN","PN","PN","PN","PN","APRN","APRN","APRN","APRN","APFF","APFF","APFF","APFF","RB","PN","PN","PN","PN","PN","APRN","APRN","APRN","APFF","APFF","APFF","APFF","SANT","SANT","SANT","RB","RB","RB","RB","RB","RB","RB","PN","PN","PN","PN","PN","PN","PN","PN","PN","MN","MN","MN","APRN","APRN","APFF","APFF","APFF","APFF","APFF","APFF","APFF","SANT","SANT","SANT","SANT","SANT","SANT","SANT","RB","RB","RB","RB","RB","RB","RB","RB","RB","PN","PN","PN","PN","PN","PN","PN","PN","PN","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","SANT","SANT","APFF","APRN","PN"],["Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Baja California y Pacífico Norte; Noroeste y Alto Golfo de California","Norte y Sierra Madre Occidental; Occidente y Pacífico Centro","Planicie Costera y Golfo de México; Península de Yucatán y Caribe Mexicano"],[1,0,1,0,1,1,1,1,1,1,0,0,1,1,0,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,0,1,1,0,0,1,1,1,1,1,1,1,1,0,1,0,1,1,0,1,1,1,0,1,0,1,1,0,0,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,0,1,1,1,0,1,1,1,1,0,0,1,1,0,0,1,1,0,1,0,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0,1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,0,1,1,1,0,1,1,1,1,0,1,1,1,1,0,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,0],[0,0,1,0,1,1,1,0,1,1,0,0,1,1,1,1,0,1,1,1,0,1,0,1,1,0,1,1,1,0,0,0,1,0,1,1,0,1,1,0,1,1,1,0,0,0,1,1,1,1,1,1,1,0,0,1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,1,1,1,1,0,1,0,1,1,0,1,1,0,0,0,0,0,0,1,1,1,0,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,0,1,0,0,0,1,0,0,1,1,0,1,0,0,1,0,1,1,0,0,1,1,0,1,1,1,0,1,1,1,1,0,0,1,0,0,1,1,1,1,0,1,0,1,1,1,1,1,0,0,0,1,0],[0,0,1,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,1,1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,0,0,1,0,0,1,1,0,1,1,1,1,1,0,1,0,0,0,0,1,0,0,0,1,1,1,0,0,0,0,0,0,0,0,1],[1,0,1,0,0,1,0,0,0,1,0,0,1,1,1,1,0,1,1,1,0,1,0,1,0,0,1,1,0,1,0,0,1,0,0,0,0,0,0,1,0,0,0,0,1,0,1,1,1,0,1,1,1,0,0,1,1,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,1,1,1,0,0,0,1,0,1,1,0,0,0,1,1,0,1,1,1,1,0,0,0,0,1,0,1,1,1,1,1,1,0,1,1,0,1,1,1,1,0,1,1,1,1,0,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1,0,1,0,0,1,1,0,0,1,0,1,0,0,0,1,0,0,0,1,0,0,1,1,0,1,0,0,0,0,1,1,0,1,0,0,0,1,0],[0,0,1,0,1,1,0,1,0,1,0,0,1,1,1,1,0,0,0,0,0,1,0,0,1,0,1,0,1,0,0,0,1,0,0,0,0,0,1,0,0,0,1,0,1,0,1,0,0,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,0,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,0,1,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1,0,1,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,1,0,0,1,0,1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0,1,0],[2,0,5,0,3,4,3,3,3,5,0,0,4,4,3,4,1,3,3,3,1,4,0,2,3,0,4,3,3,2,0,1,4,0,1,2,1,2,3,2,3,2,3,0,3,0,4,3,2,3,4,4,2,1,0,4,2,1,0,1,0,2,0,3,0,2,0,1,1,1,1,1,2,1,1,1,3,3,4,1,3,3,2,3,0,2,2,4,2,1,3,3,2,0,1,3,1,0,1,4,4,0,4,2,3,3,1,1,1,0,5,3,3,4,3,5,5,5,1,4,5,2,4,4,3,3,0,4,3,4,3,2,3,4,3,0,0,0,0,0,0,3,3,1,4,1,2,2,3,2,2,3,4,0,3,4,3,3,1,2,3,1,2,5,3,0,5,3,3,1,3,3,4,4,0,2,4,1,2,2,5,2,3,1,3,2,4,2,4,1,3,1,1,1,4,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>id_anp<\/th>\n      <th>nombre_anp<\/th>\n      <th>cat_manejo<\/th>\n      <th>region<\/th>\n      <th>Contaminación_sólidos-líquidos<\/th>\n      <th>Contaminación cuerpos de agua<\/th>\n      <th>Derrame hidrocarburos<\/th>\n      <th>Uso plaguicidas_agroquímicos<\/th>\n      <th>Vertederos al aire libre<\/th>\n      <th>total_riesgo<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"autoWidth":true,"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"columnDefs":[{"width":"150px","targets":[4,5,6,7,8]},{"className":"dt-right","targets":[4,5,6,7,8,9]},{"name":"id_anp","targets":0},{"name":"nombre_anp","targets":1},{"name":"cat_manejo","targets":2},{"name":"region","targets":3},{"name":"Contaminación_sólidos-líquidos","targets":4},{"name":"Contaminación cuerpos de agua","targets":5},{"name":"Derrame hidrocarburos","targets":6},{"name":"Uso plaguicidas_agroquímicos","targets":7},{"name":"Vertederos al aire libre","targets":8},{"name":"total_riesgo","targets":9}],"order":[],"orderClasses":false,"orderCellsTop":true,"responsive":true,"lengthMenu":[5,10,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'color':'black','background-color':'white','font-size':'12px'});\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'color':'black','background-color':'white','font-size':'12px'});\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'color':'black','background-color':'white','font-size':'12px'});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'color':'black','background-color':'white','font-size':'12px'});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'color':'black','background-color':'white','font-size':'12px'});\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'color':'black','background-color':'white','font-size':'12px'});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'color':'black','background-color':'white','font-size':'12px'});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'color':'black','background-color':'white','font-size':'12px'});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="actividades-económicas-primarias" class="level1">
+<h1>Actividades económicas: primarias</h1>
+<div class="cell">
+<div class="cell-output-display">
+<div class="highchart html-widget html-fill-item" id="htmlwidget-65d3afec750790ca187a" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-65d3afec750790ca187a">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":"Número de ANP en las que ocurren Actividades económicas: primarias","style":{"fontSize":"22px","fontWeight":"bold","color":"black"}},"yAxis":{"title":{"text":"total"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":false},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}},"pie":{"dataLabels":{"enabled":true,"format":"{point.name}: {point.y} ANP","style":{"fontSize":"17px","fontWeight":"bold","color":"black"}},"colors":["pink","#FFC1C1","#EEB4B4","#CD9B9B","#8B6969"],"innerSize":"50%"}},"series":[{"group":"group","data":[{"variable":"Minería","total":31,"colorv":"#CD9B9B","y":31,"name":"Minería"},{"variable":"Construcción infraestructura","total":48,"colorv":"#CD9B9B","y":48,"name":"Construcción infraestructura"},{"variable":"Extracción material pétreo","total":61,"colorv":"#CD9B9B","y":61,"name":"Extracción material pétreo"},{"variable":"Ganadería dentro ANP","total":102,"colorv":"#CD9B9B","y":102,"name":"Ganadería dentro ANP"},{"variable":"Turismo irregular","total":147,"colorv":"#CD9B9B","y":147,"name":"Turismo irregular"}],"type":"pie"}],"xAxis":{"type":"category","title":{"text":"variable"},"categories":null},"tooltip":{"pointFormat":"Riesgo: {point.name}<br>ANP Reportando: {point.y}"}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<div class="highchart html-widget html-fill-item" id="htmlwidget-f035a80d3ae690c3dbe1" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-f035a80d3ae690c3dbe1">{"x":{"hc_opts":{"chart":{"reflow":true,"type":"column"},"title":{"text":"Número de riesgos en las ANP"},"yAxis":[{"title":{"text":"Número de ANP","style":{"color":"black","fontSize":"18px"}},"labels":{"style":{"fontWeight":"bold","color":"black","fontSize":"18px"}}}],"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"},"column":{"pointPadding":0.05,"borderWidth":0}},"series":[{"data":[24,54,51,40,22,5],"name":"ANP","color":"#CD9B9B","dataLabels":{"enabled":true,"style":{"color":"black","fontSize":"22px"}}}],"tooltip":{"pointFormat":"<b>{point.y} ANP<\/b> con <b>{point.category} riesgos<\/b>"},"xAxis":[{"title":{"text":"","style":{"color":"black","fontSize":"18px"}},"labels":{"style":{"fontWeight":"bold","color":"black","fontSize":"18px"}}}]},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-5d03b62d9dcf9fbcb8cb" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-5d03b62d9dcf9fbcb8cb">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"5\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons","Responsive"],"data":[["00101100","00103045","00103052","00103183","00103190","00103192","00107055","00107063","00107177","00201110","00201111","00201153","00207038","00207125","00207145","00207200","00208085","00208089","00208204","00301059","00303037","00303067","00303146","00307018","00307024","00307035","00307172","00307178","00308219","00401060","00401113","00403008","00403010","00403029","00403039","00403144","00404103","00404173","00406047","00406048","00407068","00407072","00407118","00407119","00407120","00407168","00407184","00407221","00501096","00501147","00501164","00501175","00501218","00503005","00503006","00503033","00503034","00503042","00503050","00503065","00503159","00503214","00506046","00507040","00507061","00507076","00507217","00508079","00508081","00508082","00508083","00508090","00508091","00508092","00508093","00508152","00508213","00601130","00601135","00601143","00601149","00601161","00601220","00603002","00603007","00603009","00603011","00603013","00603015","00603016","00603021","00603026","00603031","00603036","00603053","00603064","00603070","00603075","00603193","00606043","00606185","00606187","00606223","00607003","00607099","00607154","00607188","00701203","00703014","00703017","00703025","00703109","00703210","00706032","00706224","00706228","00707116","00707156","00707166","00707169","00708080","00708205","00708209","00801056","00801077","00801102","00801108","00801122","00801123","00801155","00803020","00803023","00803051","00803066","00803071","00803134","00803197","00803199","00803226","00804105","00804107","00804140","00806058","00806232","00807062","00807106","00807136","00807137","00807167","00807196","00807230","00808084","00808086","00808094","00808095","00808206","00808208","00808215","00901078","00901101","00901126","00901132","00901139","00901141","00901148","00901170","00901201","00903069","00903097","00903117","00903127","00903128","00903133","00903150","00903207","00903212","00907115","00907121","00907151","00907160","00907165","00907176","00907186","00907189","00907194","00907195","00907198","00907202","00907222","00907227","00907229","00908087","00908211","02107057","05306049","09703231"],["El Vizcaíno","Sierra de San Pedro Mártir","Constitución de 1857","Revillagigedo","Loreto II","San Quintín","Cabo San Lucas","Valle de los Cirios","Balandra","Alto Golfo de California y Delta del Río Colorado","El Pinacate y Gran Desierto de Altar","Isla San Pedro Mártir","Bavispe","Sierra de Álamos-Río Cuchujaqui","Meseta de Cacaxtla","Juan M. Banderas","Playa Ceuta","Playa Huizache Caimanero","Playa El Verde Camacho","La Michilía","Cumbres de Majalca","Cascada de Bassaseachic","Sierra de Órganos","Tutuaca","Campo Verde","Papigochic","Médanos de Samalayuca","Cerro Mohinora","Cotorra Serrana Occidental","Mapimí","Sierra del Abra Tanchipa","El Potosí","Gogorrón","El Sabinal","Los Novillos","Cumbres de Monterrey","Cerro de la Silla","Río Bravo del Norte","C.A.D.N.R. 004 Don Martín","C.A.D.N.R. 026 Bajo Río San Juan","Sierra de Álvarez","Sierra La Mojonera","Cañón de Santa Elena","Maderas del Carmen","Cuatrociénegas","Ocampo","Sierra de San Miguelito","Semidesierto Zacatecano","Sierra de Manantlán","Islas Marías","Zicuirán-Infiernillo","Marismas Nacionales Nayarit","Sierra de Vallejo-Río Ameca","Cerro de Garnica","Volcán Nevado de Colima","Barranca del Cupatitzio","Insurgente José María Morelos","Lago de Camécuaro","Rayón","Isla Isabel","Islas Marietas","Zona Marina de la Isla Isabel","C.A.D.N.R. 001 Pabellón","Pico de Tancítaro","La Primavera","Sierra de Quila","Canoas","Playa Teopa","Playa Piedra de Tlacoyunque","Playa Mexiquillo","Playa Cuitzmala","Playa El Tecuán","Playa Mismaloya","Playa Maruata","Playa Colola","Islas La Pajarera, Cocinas, Mamut, Colorada, San Pedro, San Agustín, San Andrés y Negrita y los Islotes Los Anegados, Novillas, Mosca y Submarino","Playa Platanitos","Sierra Gorda","Tehuacán-Cuicatlán","Mariposa Monarca","Barranca de Metztitlán","Sierra Gorda de Guanajuato","Sierra Tecuani","Iztaccíhuatl-Popocatépetl","Los Mármoles","Insurgente Miguel Hidalgo y Costilla","Cumbres del Ajusco","Lagunas de Zempoala","El Tepozteco","El Tepeyac","Molino de Flores Netzahualcóyotl","Los Remedios","La Montaña Malinche o Matlalcuéyatl","Sacromonte","General Juan Álvarez","El Veladero","Tula","El Cimatario","Vicente Guerrero","Z.P.F.T.C.C. de los ríos Valle de Bravo, Malacatepec, Tilostoc y Temascaltepec","Lago de Texcoco","Peña Colorada","Lago Tláhuac-Xico","Nevado de Toluca","Corredor Biológico Chichinautzin","Ciénegas del Lerma","Hermenegildo Galeana","Wanha'","Pico de Orizaba","Cofre de Perote o Nauhcampatépetl","Cañón del Río Blanco","Sistema Arrecifal Veracruzano","Carmen Serdán","Z.P.F.V. la Cuenca Hidrográfica del Río Necaxa","Tlachinoltepetl","Kowtahyolo","Laguna de Términos","Laguna Madre y Delta del Río Bravo","Cañón del Usumacinta","Sistema Arrecifal Lobos-Tuxpan","Playa Rancho Nuevo","Playa Lechuguillas","Playas del Totonacapan","Montes Azules","Selva El Ocote","El Triunfo","Lacan-Tun","La Encrucijada","La Sepultura","Volcán Tacaná","Lagunas de Chacahua","Benito Juárez","Lagunas de Montebello","Cañón del Sumidero","Palenque","Huatulco","Huatulco II","Ricardo Flores Magón","Tangolunda","Bonampak","Yaxchilán","Yagul","Z.P.F. en los terrenos que se encuentran en los mpios. de La Concordia, Ángel Albino Corzo, Villa Flores y Jiquipilas","Z.P.F.V. los terrenos forestales de Villa Allende","Cascada de Agua Azul","Chan-Kin","Nahá","Metzabok","Boquerón de Tonalá","Bajos de Coyula","Bajos de Coyula II","Playa Chacahua","Playa Tierra Colorada","Playa Puerto Arista","Playa Escobilla","Barra de la Cruz-Playa Grande","Playa Morro Ayuta","Playa Cahuitán","Sian Ka'an","Calakmul","Banco Chinchorro","Arrecifes de Sian Ka'an","Ría Lagartos","Los Petenes","Ría Celestún","Tiburón Ballena","Balam Kú","Tulum","Dzibilchantún","Arrecife Alacranes","Costa Occidental de Isla Mujeres, Punta Cancún y Punta Nizuc","Arrecifes de Cozumel","Arrecife de Puerto Morelos","Arrecifes de Xcalak","Nuevo Uxmal","Bajos del Norte","Yum Balam","Uaymil","Otoch Ma'ax Yetel Kooh","Bala'an K'aax","Manglares de Nichupté","La porción norte y la franja costera oriental, terrestres y marinas de la Isla de Cozumel","Jaguar","Jacinto Pat","Cenote Aerolito","Playa Delfines","San Buenaventura","Balam Kin","Manglares de Puerto Morelos","Felipe Carrillo Puerto","Chunyaxché","Playa Ría Lagartos","Playa Chenkan","Islas del Golfo de California","C.A.D.N.R. 043 Estado de Nayarit","Arrecifes del Golfo de México-Sur"],["RB","PN","PN","PN","PN","PN","APFF","APFF","APFF","RB","RB","RB","APFF","APFF","APFF","APFF","SANT","SANT","SANT","RB","PN","PN","PN","APFF","APFF","APFF","APFF","APFF","SANT","RB","RB","PN","PN","PN","PN","PN","MN","MN","APRN","APRN","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","RB","RB","RB","RB","RB","PN","PN","PN","PN","PN","PN","PN","PN","PN","APRN","APFF","APFF","APFF","APFF","SANT","SANT","SANT","SANT","SANT","SANT","SANT","SANT","SANT","SANT","RB","RB","RB","RB","RB","RB","PN","PN","PN","PN","PN","PN","PN","PN","PN","PN","PN","PN","PN","PN","PN","PN","APRN","APRN","APRN","APRN","APFF","APFF","APFF","APFF","RB","PN","PN","PN","PN","PN","APRN","APRN","APRN","APFF","APFF","APFF","APFF","SANT","SANT","SANT","RB","RB","RB","RB","RB","RB","RB","PN","PN","PN","PN","PN","PN","PN","PN","PN","MN","MN","MN","APRN","APRN","APFF","APFF","APFF","APFF","APFF","APFF","APFF","SANT","SANT","SANT","SANT","SANT","SANT","SANT","RB","RB","RB","RB","RB","RB","RB","RB","RB","PN","PN","PN","PN","PN","PN","PN","PN","PN","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","SANT","SANT","APFF","APRN","PN"],["Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Baja California y Pacífico Norte; Noroeste y Alto Golfo de California","Norte y Sierra Madre Occidental; Occidente y Pacífico Centro","Planicie Costera y Golfo de México; Península de Yucatán y Caribe Mexicano"],[1,1,1,0,1,0,0,1,1,1,1,0,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,0,1,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,1,1,1,1,1,1,1,1,0,0,0,1,0,0,1,0,0,0,1,1,0,1,1,1,1,0,1,1,0,1,0,0,0,1,1,1,1,1,0,1,0,0,1,1,0,0,1,1,0,1,0,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,1,1,1,1,1,0,1,0,0,0,0,1,0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,0],[1,0,0,0,0,0,0,1,0,0,0,0,1,1,1,0,1,0,0,0,0,1,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,1,1,1,0,1,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,0,1,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],[1,0,0,0,1,0,0,1,0,1,0,0,1,1,1,0,1,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,0,1,0,0,1,0,1,1,1,1,0,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,1,0,0,0,1,0,0,0,1,0,1,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,0,1,1,0,0,0,1,0,0,0,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,1,0,0,0,0,1,0],[0,0,1,0,0,0,0,1,1,0,1,0,0,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,0,0,0,1,1,1,0,0,0,0,0,0,1,1,0,1,0,1,0,1,1,1,1,0,0,1,0,0,0,1,0,1,0,0,1,0,1,1,0,0,0,1,0,0,0],[0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,0,1,0,0,1,1,1,1,1,1,0,1,1,1,1,1,0,0,1,0,1,1,0,0,1,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,0,1,1,1,1,1,1,1,0,1,0,1,1,1,1,0,1,1,1,1,0,1,1,1,1,1,1,0,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,0,0,1,1,1,1,0,1,1,1,1,1,1,0,1,0,1,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1,1,1,1,0,0,1,1,1,0,0,1,1,1,0,1,1,0,0,1,0,0,1,1,1,0,1],[3,2,3,1,3,1,1,5,3,3,3,1,4,5,4,1,5,2,2,1,2,3,2,4,3,3,4,4,3,2,0,1,3,1,1,4,2,1,4,1,5,3,4,4,3,4,3,3,2,3,3,3,3,1,0,1,1,1,0,1,1,1,3,3,1,2,2,0,0,0,0,1,1,1,0,1,3,4,4,3,2,4,1,3,2,3,2,2,3,0,2,1,4,1,2,2,1,1,1,4,3,0,1,2,3,1,2,2,2,1,4,1,1,2,2,5,3,2,2,0,3,1,0,2,2,2,0,2,4,2,4,0,3,4,2,1,1,2,0,1,0,2,2,3,2,0,2,2,2,3,3,2,2,1,3,2,2,1,1,3,0,1,2,3,3,1,4,1,2,1,2,2,2,1,0,1,4,1,0,0,2,1,4,0,1,3,0,1,2,1,0,1,2,2,3,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>id_anp<\/th>\n      <th>nombre_anp<\/th>\n      <th>cat_manejo<\/th>\n      <th>region<\/th>\n      <th>Ganadería dentro ANP<\/th>\n      <th>Minería<\/th>\n      <th>Extracción material pétreo<\/th>\n      <th>Construcción infraestructura<\/th>\n      <th>Turismo irregular<\/th>\n      <th>total_riesgo<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"autoWidth":true,"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"columnDefs":[{"width":"150px","targets":[4,5,6,7,8]},{"className":"dt-right","targets":[4,5,6,7,8,9]},{"name":"id_anp","targets":0},{"name":"nombre_anp","targets":1},{"name":"cat_manejo","targets":2},{"name":"region","targets":3},{"name":"Ganadería dentro ANP","targets":4},{"name":"Minería","targets":5},{"name":"Extracción material pétreo","targets":6},{"name":"Construcción infraestructura","targets":7},{"name":"Turismo irregular","targets":8},{"name":"total_riesgo","targets":9}],"order":[],"orderClasses":false,"orderCellsTop":true,"responsive":true,"lengthMenu":[5,10,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'color':'black','background-color':'white','font-size':'12px'});\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'color':'black','background-color':'white','font-size':'12px'});\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'color':'black','background-color':'white','font-size':'12px'});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'color':'black','background-color':'white','font-size':'12px'});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'color':'black','background-color':'white','font-size':'12px'});\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'color':'black','background-color':'white','font-size':'12px'});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'color':'black','background-color':'white','font-size':'12px'});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'color':'black','background-color':'white','font-size':'12px'});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="ilícitos-ambientales" class="level1">
+<h1>Ilícitos ambientales</h1>
+<div class="cell">
+<div class="cell-output-display">
+<div class="highchart html-widget html-fill-item" id="htmlwidget-a93531017bed2580f388" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-a93531017bed2580f388">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":"Número de ANP en las que ocurren Actividades económicas: primarias","style":{"fontSize":"22px","fontWeight":"bold","color":"black"}},"yAxis":{"title":{"text":"total"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":false},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}},"pie":{"dataLabels":{"enabled":true,"format":"{point.name}: {point.y} ANP","style":{"fontSize":"17px","fontWeight":"bold","color":"black"}},"colors":["#903432","#dd7244","#ee9b4d","#a2b59a","#e6d4ef"],"innerSize":"50%"}},"series":[{"group":"group","data":[{"variable":"Pesca ilegal","total":65,"colorv":"#DAA520","y":65,"name":"Pesca ilegal"},{"variable":"Asent. irregulares invasiones","total":84,"colorv":"#DAA520","y":84,"name":"Asent. irregulares invasiones"},{"variable":"Tala ilegal","total":102,"colorv":"#DAA520","y":102,"name":"Tala ilegal"},{"variable":"Caza ilegal","total":114,"colorv":"#DAA520","y":114,"name":"Caza ilegal"},{"variable":"Extracción-tráfico_flora_fauna","total":120,"colorv":"#DAA520","y":120,"name":"Extracción-tráfico_flora_fauna"}],"type":"pie"}],"xAxis":{"type":"category","title":{"text":"variable"},"categories":null},"tooltip":{"pointFormat":"Riesgo: {point.name}<br>ANP Reportando: {point.y}"}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<div class="highchart html-widget html-fill-item" id="htmlwidget-006cd7d0cf105a0b6705" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-006cd7d0cf105a0b6705">{"x":{"hc_opts":{"chart":{"reflow":true,"type":"column"},"title":{"text":"Número de riesgos en las ANP"},"yAxis":[{"title":{"text":"Número de ANP","style":{"color":"black","fontSize":"18px"}},"labels":{"style":{"fontWeight":"bold","color":"black","fontSize":"18px"}}}],"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"},"column":{"pointPadding":0.05,"borderWidth":0}},"series":[{"data":[16,42,44,37,41,16],"name":"ANP","color":"#DAA520","dataLabels":{"enabled":true,"style":{"color":"black","fontSize":"22px"}}}],"tooltip":{"pointFormat":"<b>{point.y} ANP<\/b> con <b>{point.category} riesgos<\/b>"},"xAxis":[{"title":{"text":"","style":{"color":"black","fontSize":"18px"}},"labels":{"style":{"fontWeight":"bold","color":"black","fontSize":"18px"}}}]},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-fd4c5596019d93e17dfb" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-fd4c5596019d93e17dfb">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"5\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons","Responsive"],"data":[["00101100","00103045","00103052","00103183","00103190","00103192","00107055","00107063","00107177","00201110","00201111","00201153","00207038","00207125","00207145","00207200","00208085","00208089","00208204","00301059","00303037","00303067","00303146","00307018","00307024","00307035","00307172","00307178","00308219","00401060","00401113","00403008","00403010","00403029","00403039","00403144","00404103","00404173","00406047","00406048","00407068","00407072","00407118","00407119","00407120","00407168","00407184","00407221","00501096","00501147","00501164","00501175","00501218","00503005","00503006","00503033","00503034","00503042","00503050","00503065","00503159","00503214","00506046","00507040","00507061","00507076","00507217","00508079","00508081","00508082","00508083","00508090","00508091","00508092","00508093","00508152","00508213","00601130","00601135","00601143","00601149","00601161","00601220","00603002","00603007","00603009","00603011","00603013","00603015","00603016","00603021","00603026","00603031","00603036","00603053","00603064","00603070","00603075","00603193","00606043","00606185","00606187","00606223","00607003","00607099","00607154","00607188","00701203","00703014","00703017","00703025","00703109","00703210","00706032","00706224","00706228","00707116","00707156","00707166","00707169","00708080","00708205","00708209","00801056","00801077","00801102","00801108","00801122","00801123","00801155","00803020","00803023","00803051","00803066","00803071","00803134","00803197","00803199","00803226","00804105","00804107","00804140","00806058","00806232","00807062","00807106","00807136","00807137","00807167","00807196","00807230","00808084","00808086","00808094","00808095","00808206","00808208","00808215","00901078","00901101","00901126","00901132","00901139","00901141","00901148","00901170","00901201","00903069","00903097","00903117","00903127","00903128","00903133","00903150","00903207","00903212","00907115","00907121","00907151","00907160","00907165","00907176","00907186","00907189","00907194","00907195","00907198","00907202","00907222","00907227","00907229","00908087","00908211","02107057","05306049","09703231"],["El Vizcaíno","Sierra de San Pedro Mártir","Constitución de 1857","Revillagigedo","Loreto II","San Quintín","Cabo San Lucas","Valle de los Cirios","Balandra","Alto Golfo de California y Delta del Río Colorado","El Pinacate y Gran Desierto de Altar","Isla San Pedro Mártir","Bavispe","Sierra de Álamos-Río Cuchujaqui","Meseta de Cacaxtla","Juan M. Banderas","Playa Ceuta","Playa Huizache Caimanero","Playa El Verde Camacho","La Michilía","Cumbres de Majalca","Cascada de Bassaseachic","Sierra de Órganos","Tutuaca","Campo Verde","Papigochic","Médanos de Samalayuca","Cerro Mohinora","Cotorra Serrana Occidental","Mapimí","Sierra del Abra Tanchipa","El Potosí","Gogorrón","El Sabinal","Los Novillos","Cumbres de Monterrey","Cerro de la Silla","Río Bravo del Norte","C.A.D.N.R. 004 Don Martín","C.A.D.N.R. 026 Bajo Río San Juan","Sierra de Álvarez","Sierra La Mojonera","Cañón de Santa Elena","Maderas del Carmen","Cuatrociénegas","Ocampo","Sierra de San Miguelito","Semidesierto Zacatecano","Sierra de Manantlán","Islas Marías","Zicuirán-Infiernillo","Marismas Nacionales Nayarit","Sierra de Vallejo-Río Ameca","Cerro de Garnica","Volcán Nevado de Colima","Barranca del Cupatitzio","Insurgente José María Morelos","Lago de Camécuaro","Rayón","Isla Isabel","Islas Marietas","Zona Marina de la Isla Isabel","C.A.D.N.R. 001 Pabellón","Pico de Tancítaro","La Primavera","Sierra de Quila","Canoas","Playa Teopa","Playa Piedra de Tlacoyunque","Playa Mexiquillo","Playa Cuitzmala","Playa El Tecuán","Playa Mismaloya","Playa Maruata","Playa Colola","Islas La Pajarera, Cocinas, Mamut, Colorada, San Pedro, San Agustín, San Andrés y Negrita y los Islotes Los Anegados, Novillas, Mosca y Submarino","Playa Platanitos","Sierra Gorda","Tehuacán-Cuicatlán","Mariposa Monarca","Barranca de Metztitlán","Sierra Gorda de Guanajuato","Sierra Tecuani","Iztaccíhuatl-Popocatépetl","Los Mármoles","Insurgente Miguel Hidalgo y Costilla","Cumbres del Ajusco","Lagunas de Zempoala","El Tepozteco","El Tepeyac","Molino de Flores Netzahualcóyotl","Los Remedios","La Montaña Malinche o Matlalcuéyatl","Sacromonte","General Juan Álvarez","El Veladero","Tula","El Cimatario","Vicente Guerrero","Z.P.F.T.C.C. de los ríos Valle de Bravo, Malacatepec, Tilostoc y Temascaltepec","Lago de Texcoco","Peña Colorada","Lago Tláhuac-Xico","Nevado de Toluca","Corredor Biológico Chichinautzin","Ciénegas del Lerma","Hermenegildo Galeana","Wanha'","Pico de Orizaba","Cofre de Perote o Nauhcampatépetl","Cañón del Río Blanco","Sistema Arrecifal Veracruzano","Carmen Serdán","Z.P.F.V. la Cuenca Hidrográfica del Río Necaxa","Tlachinoltepetl","Kowtahyolo","Laguna de Términos","Laguna Madre y Delta del Río Bravo","Cañón del Usumacinta","Sistema Arrecifal Lobos-Tuxpan","Playa Rancho Nuevo","Playa Lechuguillas","Playas del Totonacapan","Montes Azules","Selva El Ocote","El Triunfo","Lacan-Tun","La Encrucijada","La Sepultura","Volcán Tacaná","Lagunas de Chacahua","Benito Juárez","Lagunas de Montebello","Cañón del Sumidero","Palenque","Huatulco","Huatulco II","Ricardo Flores Magón","Tangolunda","Bonampak","Yaxchilán","Yagul","Z.P.F. en los terrenos que se encuentran en los mpios. de La Concordia, Ángel Albino Corzo, Villa Flores y Jiquipilas","Z.P.F.V. los terrenos forestales de Villa Allende","Cascada de Agua Azul","Chan-Kin","Nahá","Metzabok","Boquerón de Tonalá","Bajos de Coyula","Bajos de Coyula II","Playa Chacahua","Playa Tierra Colorada","Playa Puerto Arista","Playa Escobilla","Barra de la Cruz-Playa Grande","Playa Morro Ayuta","Playa Cahuitán","Sian Ka'an","Calakmul","Banco Chinchorro","Arrecifes de Sian Ka'an","Ría Lagartos","Los Petenes","Ría Celestún","Tiburón Ballena","Balam Kú","Tulum","Dzibilchantún","Arrecife Alacranes","Costa Occidental de Isla Mujeres, Punta Cancún y Punta Nizuc","Arrecifes de Cozumel","Arrecife de Puerto Morelos","Arrecifes de Xcalak","Nuevo Uxmal","Bajos del Norte","Yum Balam","Uaymil","Otoch Ma'ax Yetel Kooh","Bala'an K'aax","Manglares de Nichupté","La porción norte y la franja costera oriental, terrestres y marinas de la Isla de Cozumel","Jaguar","Jacinto Pat","Cenote Aerolito","Playa Delfines","San Buenaventura","Balam Kin","Manglares de Puerto Morelos","Felipe Carrillo Puerto","Chunyaxché","Playa Ría Lagartos","Playa Chenkan","Islas del Golfo de California","C.A.D.N.R. 043 Estado de Nayarit","Arrecifes del Golfo de México-Sur"],["RB","PN","PN","PN","PN","PN","APFF","APFF","APFF","RB","RB","RB","APFF","APFF","APFF","APFF","SANT","SANT","SANT","RB","PN","PN","PN","APFF","APFF","APFF","APFF","APFF","SANT","RB","RB","PN","PN","PN","PN","PN","MN","MN","APRN","APRN","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","RB","RB","RB","RB","RB","PN","PN","PN","PN","PN","PN","PN","PN","PN","APRN","APFF","APFF","APFF","APFF","SANT","SANT","SANT","SANT","SANT","SANT","SANT","SANT","SANT","SANT","RB","RB","RB","RB","RB","RB","PN","PN","PN","PN","PN","PN","PN","PN","PN","PN","PN","PN","PN","PN","PN","PN","APRN","APRN","APRN","APRN","APFF","APFF","APFF","APFF","RB","PN","PN","PN","PN","PN","APRN","APRN","APRN","APFF","APFF","APFF","APFF","SANT","SANT","SANT","RB","RB","RB","RB","RB","RB","RB","PN","PN","PN","PN","PN","PN","PN","PN","PN","MN","MN","MN","APRN","APRN","APFF","APFF","APFF","APFF","APFF","APFF","APFF","SANT","SANT","SANT","SANT","SANT","SANT","SANT","RB","RB","RB","RB","RB","RB","RB","RB","RB","PN","PN","PN","PN","PN","PN","PN","PN","PN","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","APFF","SANT","SANT","APFF","APRN","PN"],["Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Península de Baja California y Pacífico Norte","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Noroeste y Alto Golfo de California","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Norte y Sierra Madre Occidental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Noreste y Sierra Madre Oriental","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Occidente y Pacífico Centro","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Centro y Eje Neovolcánico","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Planicie Costera y Golfo de México","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Frontera Sur, Istmo y Pacífico Sur","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Yucatán y Caribe Mexicano","Península de Baja California y Pacífico Norte; Noroeste y Alto Golfo de California","Norte y Sierra Madre Occidental; Occidente y Pacífico Centro","Planicie Costera y Golfo de México; Península de Yucatán y Caribe Mexicano"],[0,0,1,0,0,0,0,1,0,0,0,0,0,1,1,1,0,1,1,0,0,0,0,1,0,1,0,1,0,0,0,1,1,0,0,1,0,0,1,1,1,0,0,0,1,0,1,0,1,1,1,1,0,1,0,1,1,0,1,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,1,1,1,1,1,1,1,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,1,0,0,1,1,1,1,0,1,1,1,1,1,0,0,0,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,1,0,1,0,0,0,1,1,0,1,1,0,1,0,1,1,0,0,0,0,0,1,0,0,1,1,1,1,0,0,1,0,0,0,0,1,1,1,1,0,0,0,1,0],[1,0,0,1,0,1,1,0,1,1,0,1,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,0,0,0,1,1,0,1,1,0,0,1,0,0,1,1,0,0,1,0,1,1,0,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,1,1,1,1,1,0,1,0,1,1,1,1,0,1,1,0,0,1,1,1,1,1,0,1,1,1,0,0,1,1,0,0,0,0,0,0,1,0,0,0,1,1,0,1],[1,1,0,0,0,1,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,1,1,0,0,0,0,0,1,0,0,1,1,0,0,0,1,0,1,0,0,0,0,0,0,1,0,0,0,1,0,1,1,0,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,1,0,0,1,1,0,1,1,1,0,1,0,1,0,1,1,1,1,0,1,1,0,0,0,0,1,0,0,0,0,1,1,0,0,0,1,0,0,1,1,1,0,1,1,0,0,1,1,1,1,1,1,1,0,0,0,1,1,0,1,0,0,0,1,1,1,1,0,1,1,0,1,0,1,0,0,1,1,0,1,0,1,1,1,0,0,0,1,1,0,0,1,1,0,1,1,0,1,1,0,0,0,0,1,0,1,0,1,1,0,0],[0,0,0,0,1,0,0,1,1,1,0,1,0,1,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,0,0,0,0,1,0,0,1,1,1,1,0,1,1,1,1,1,1,1,1,0,0,0,1,0,0,0,0,0,1,0,0,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,0,1,0,0,1,1,1,1,0,0,0,1,1,1,0,0,1,0,1,0,0,0,1,1,1,1,0,1,1,0,1,1,1,1,1,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,0,0,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,0,0,0,1,1,0,0,1,0,1,1,1,1,0,0,1,1,0],[0,0,1,0,1,1,0,1,0,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,0,1,0,0,0,0,0,0,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,0,1,0,0,0,0,0,1,1,0,1,1,0,0,0,0,0,1,0,0,0,1,1,1,0,0,1,0,1,1,1,0,1,1,0,0,0,1,0,0,1,0,0,0,0,1,1,0,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,0,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,0,1,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,1,1,0,0,1,0,0,0,0,1,1,1,1,0,0,1,1,0],[2,1,2,1,2,3,1,4,2,3,0,2,1,3,5,1,1,2,2,0,1,1,0,1,1,2,2,2,1,1,1,3,3,0,0,2,1,2,3,2,4,2,3,1,3,2,3,2,3,5,4,4,2,3,0,2,4,0,2,0,1,1,3,2,2,4,4,1,1,1,1,1,3,1,1,1,3,5,4,1,2,3,1,3,2,3,2,3,4,2,0,1,3,2,1,4,0,1,1,1,3,2,1,2,4,3,2,4,2,2,4,1,4,3,3,4,5,2,1,1,5,0,1,5,4,4,4,5,4,3,4,4,4,4,4,4,4,4,3,2,0,4,4,3,4,3,3,2,4,4,4,4,4,3,5,3,4,1,5,3,2,5,5,3,3,2,5,4,2,2,1,2,4,5,0,2,5,5,2,3,2,2,4,1,0,1,0,3,5,3,4,0,2,4,3,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>id_anp<\/th>\n      <th>nombre_anp<\/th>\n      <th>cat_manejo<\/th>\n      <th>region<\/th>\n      <th>Tala ilegal<\/th>\n      <th>Pesca ilegal<\/th>\n      <th>Asent. irregulares invasiones<\/th>\n      <th>Extracción-tráfico_flora_fauna<\/th>\n      <th>Caza ilegal<\/th>\n      <th>total_riesgo<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"autoWidth":true,"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"columnDefs":[{"width":"150px","targets":[4,5,6,7,8]},{"className":"dt-right","targets":[4,5,6,7,8,9]},{"name":"id_anp","targets":0},{"name":"nombre_anp","targets":1},{"name":"cat_manejo","targets":2},{"name":"region","targets":3},{"name":"Tala ilegal","targets":4},{"name":"Pesca ilegal","targets":5},{"name":"Asent. irregulares invasiones","targets":6},{"name":"Extracción-tráfico_flora_fauna","targets":7},{"name":"Caza ilegal","targets":8},{"name":"total_riesgo","targets":9}],"order":[],"orderClasses":false,"orderCellsTop":true,"responsive":true,"lengthMenu":[5,10,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'color':'black','background-color':'white','font-size':'12px'});\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'color':'black','background-color':'white','font-size':'12px'});\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'color':'black','background-color':'white','font-size':'12px'});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'color':'black','background-color':'white','font-size':'12px'});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'color':'black','background-color':'white','font-size':'12px'});\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'color':'black','background-color':'white','font-size':'12px'});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'color':'black','background-color':'white','font-size':'12px'});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'color':'black','background-color':'white','font-size':'12px'});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="problemática_tenencia-tierra" class="level1">
+<h1>Problemática_tenencia tierra</h1>
+<div class="cell">
+<div class="cell-output-display">
+<div class="highchart html-widget html-fill-item" id="htmlwidget-00b8396bc93c67df6f94" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-00b8396bc93c67df6f94">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":"Número de ANP en las que ocurren problemas de la tencia de la tierra","style":{"fontSize":"22px","fontWeight":"bold","color":"black"}},"yAxis":{"title":{"text":"n"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":false},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}},"pie":{"dataLabels":{"enabled":true,"format":"{point.report}: {point.y} ANP","style":{"fontSize":"16px","fontWeight":"bold","color":"black"}},"colors":["#778899","#191970"],"innerSize":"50%"}},"series":[{"group":"group","data":[{"total_rg":0,"n":101,"report":"Sin reporte ","x":0,"y":101},{"total_rg":1,"n":95,"report":"Con reporte","x":1,"y":95}],"type":"pie"}],"xAxis":{"type":"linear","title":{"text":"total_rg"},"categories":null},"tooltip":{"pointFormat":"Riesgo: {point.name}<br>ANP Reportadas: {point.y}"}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="crimen-organizado" class="level1">
+<h1>Crimen organizado</h1>
+<div class="cell">
+<div class="cell-output-display">
+<div class="highchart html-widget html-fill-item" id="htmlwidget-fa9e1823c00271a2d8c4" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-fa9e1823c00271a2d8c4">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":"Número de ANP en las que ocurren problemas de delincuencia","style":{"fontSize":"22px","fontWeight":"bold","color":"black"}},"yAxis":{"title":{"text":"n"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":false},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}},"pie":{"dataLabels":{"enabled":true,"format":"{point.report}: {point.y} ANP","style":{"fontSize":"16px","fontWeight":"bold","color":"black"}},"colors":["#CDB7B5","#B22222"],"innerSize":"50%"}},"series":[{"group":"group","data":[{"total_rg":0,"n":50,"report":"Sin reporte ","x":0,"y":50},{"total_rg":1,"n":146,"report":"Con reporte","x":1,"y":146}],"type":"pie"}],"xAxis":{"type":"linear","title":{"text":"total_rg"},"categories":null},"tooltip":{"pointFormat":"Riesgo: {point.name}<br>ANP Reportadas: {point.y}"}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="cambio-y-uso-de-suelo-y-vegetación." class="level1">
+<h1>Cambio y uso de suelo y vegetación.</h1>
+<div class="cell">
+<div class="cell-output-display">
+<div class="highchart html-widget html-fill-item" id="htmlwidget-b3849426e76c073ae621" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-b3849426e76c073ae621">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":"Número de ANP que reportaron Cambio de uso del suelo y vegetación","style":{"fontSize":"22px","fontWeight":"bold","color":"black"}},"yAxis":{"title":{"text":"n"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":false},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}},"pie":{"dataLabels":{"enabled":true,"format":"{point.report}: {point.y} ANP","style":{"fontSize":"16px","fontWeight":"bold","color":"black"}},"colors":["#BEBEBE","#8B7355"],"innerSize":"50%"}},"series":[{"group":"group","data":[{"total_rg":0,"n":72,"report":"Sin reporte ","x":0,"y":72},{"total_rg":1,"n":124,"report":"Con reporte","x":1,"y":124}],"type":"pie"}],"xAxis":{"type":"linear","title":{"text":"total_rg"},"categories":null},"tooltip":{"pointFormat":"Riesgo: {point.name}<br>ANP Reportadas: {point.y}"}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
